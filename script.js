@@ -24,3 +24,4 @@ const divide = function(num1, num2){
 const operate = function(num1, num2, operator){
     return operator(num1, num2);
 }
+
