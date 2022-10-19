@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>Document</title>
 </head>
 <body>
@@ -17,27 +17,28 @@
                 <button class="big-button" id="backspace">C</button>
             </div>   
             <div class="row" id="row2">
-                <button class="normal-button" id="seven">7</button>
-                <button class="normal-button" id="eight">8</button>
-                <button class="normal-button" id="nine">9</button>
-                <button class="normal-button" id="multiply">x</button>
+                <button class="normal-button numbutton" id="seven">7</button>
+                <button class="normal-button numbutton" id="eight">8</button>
+                <button class="normal-button numbutton" id="nine">9</button>
+                <button class="normal-button operator" id="divide">&divide;</button>
             </div>
             <div class="row" id="row3">
-                <button class="normal-button" id="four">4</button>
-                <button class="normal-button" id="five">5</button>
-                <button class="normal-button" id="six">6</button>
-                <button class="normal-button" id="subtract">-</button>
+                <button class="normal-button numbutton" id="four">4</button>
+                <button class="normal-button numbutton" id="five">5</button>
+                <button class="normal-button numbutton" id="six">6</button>
+                <button class="normal-button operator" id="multiply">&times;</button>
             </div>
             <div class="row" id="row4">
-                <button class="normal-button" id="one">1</button>
-                <button class="normal-button" id="two">2</button>
-                <button class="normal-button" id="three">3</button>
-                <button class="normal-button" id="plus">+</button>
+                <button class="normal-button numbutton" id="one">1</button>
+                <button class="normal-button numbutton" id="two">2</button>
+                <button class="normal-button numbutton" id="three">3</button>
+                <button class="normal-button operator" id="subtract">-</button>
             </div>
             <div class="row">
-                <button class="big-button" id="zero">0</button>
                 <button class="normal-button" id="decimal">.</button>
-                <button class="normal-button" id="equal">=</button>
+                <button class="normal-button numbutton" id="zero">0</button>
+                <button class="normal-button equal" id="equal">=</button>
+                <button class="normal-button operator" id="plus">+</button>
             </div>
         </div>
     </div>
