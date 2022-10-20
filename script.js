@@ -45,7 +45,8 @@ const clear = function(e){
         displayValue = ''
         display.textContent = '';
     } else if(e.target.id == 'backspace'){
-        console.log(e.target.id);
+       displayValue = displayValue.substring(0,displayValue.length-1);
+       display.textContent = display.textContent.substring(0, display.textContent.length-1);
     }
 }
 //event listners to populate the display
