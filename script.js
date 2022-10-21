@@ -36,7 +36,21 @@ const display = document.querySelector('.display');
 let displayValue='';
 const displayMainNum = function(e){
     displayValue += e.target.textContent;
-    display.textContent = `${displayValue}`
+    display.textContent = `${displayValue}`;
+}
+
+//function to store operator sign and store current display value upon clicking an operator sign
+let storedValue = '';
+let storedOperator = ''
+const setOperator = function(e){
+storedValue = displayValue;
+if(e.target.id == 'divide'){
+    storedOperator = '/';
+}else if(e.target.id == 'multiply'){
+    storedOperator = '*';
+}else{
+    storedOperator = e.target.textContent;
+}
 }
 
 //fucnton for clearing the display and backspace
@@ -56,4 +70,8 @@ numbuttons.forEach((button) => {
 
 clearbuttons.forEach((button) => {
     button.addEventListener('click', clear);
+});
+
+operator.forEach((button) => {
+    button.addEventListener('click', setOperator);
 });
