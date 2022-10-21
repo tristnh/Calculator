@@ -39,6 +39,7 @@ const operator = document.querySelectorAll('.operator');
 const equal = document.querySelector('.equal');
 const clearbuttons = document.querySelectorAll('.big-button');
 const display = document.querySelector('.display');
+const storedNumberDisplay = document.querySelector('.stored-numbers');
 
 //function to display number on calc screen
 let displayValue='';
@@ -62,29 +63,35 @@ const displayMainNum = function(e){
 let num1 = '';
 let storedOperator = ''
 const setOperator = function(e){
-num1 = displayValue;
-storedOperator = e.target.id;
-if(num1){
-    displayValue = '';
-}
+    num1 = displayValue;
+    storedOperator = e.target.id;
+    storedNumberDisplay.textContent = `${num1} ${e.target.textContent}`;
+    if(num1){
+        displayValue = '';
+    }
 }
 
 //function to preform operation
 let answer = ''
 const prefromOperation = function(){
     if(num1 && num2 && storedOperator){
+        storedNumberDisplay.textContent += ` ${num2} =`;
         num1 = +num1;
         num2 = +num2;;
-       answer =  operate(num1, num2, storedOperator);
-       console.log(answer);
+        answer =  operate(num1, num2, storedOperator);
+        display.textContent = answer;
     }
 }
 
 //fucnton for clearing the display and backspace
 const clear = function(e){
     if(e.target.id == 'full-clear'){
-        displayValue = ''
+        displayValue = '';
+        num1 = '';
+        num2 = '';
+        storedOperator = '';
         display.textContent = '';
+        storedNumberDisplay.textContent = '';
     } else if(e.target.id == 'backspace'){
        displayValue = displayValue.substring(0,displayValue.length-1);
        display.textContent = display.textContent.substring(0, display.textContent.length-1);
