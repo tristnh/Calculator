@@ -20,8 +20,16 @@ const divide = function(num1, num2){
 
 
 //Operate Function take two numbers and an operator from above
-const operate = function(num1, num2, operator){
-    return operator(num1, num2);
+const operate = function(num1, num2, operation){
+    if(operation == 'add'){
+       return add(num1, num2);
+    }else if(operation == 'subtract'){
+        return subtract(num1, num2);
+    }else if(operation == 'multiply'){
+        return multiply(num1, num2);
+    }else if(operation == 'divide'){
+        return divide(num1, num2);
+    }
 }
 
 //Variables for calcualtor buttons
@@ -55,21 +63,21 @@ let num1 = '';
 let storedOperator = ''
 const setOperator = function(e){
 num1 = displayValue;
-if(e.target.id == 'divide'){
-    storedOperator = '/';
-}else if(e.target.id == 'multiply'){
-    storedOperator = '*';
-}else{
-    storedOperator = e.target.textContent;
-}
+storedOperator = e.target.id;
 if(num1){
     displayValue = '';
 }
 }
 
 //function to preform operation
+let answer = ''
 const prefromOperation = function(){
-    
+    if(num1 && num2 && storedOperator){
+        num1 = +num1;
+        num2 = +num2;;
+       answer =  operate(num1, num2, storedOperator);
+       console.log(answer);
+    }
 }
 
 //fucnton for clearing the display and backspace
@@ -94,3 +102,5 @@ clearbuttons.forEach((button) => {
 operator.forEach((button) => {
     button.addEventListener('click', setOperator);
 });
+
+equal.addEventListener('click', prefromOperation);
