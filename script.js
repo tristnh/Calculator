@@ -34,16 +34,27 @@ const display = document.querySelector('.display');
 
 //function to display number on calc screen
 let displayValue='';
+let num2 = '';
 const displayMainNum = function(e){
-    displayValue += e.target.textContent;
-    display.textContent = `${displayValue}`;
+    if(num1){
+        displayValue += e.target.textContent;
+        display.textContent = `${displayValue}`;
+        num2 = displayValue;
+    }else{
+        displayValue += e.target.textContent;
+        display.textContent = `${displayValue}`;
+    }
+    console.log(num1);
+    console.log(num2);
+    console.log(displayValue);
+    console.log(storedOperator);
 }
 
 //function to store operator sign and store current display value upon clicking an operator sign
-let storedValue = '';
+let num1 = '';
 let storedOperator = ''
 const setOperator = function(e){
-storedValue = displayValue;
+num1 = displayValue;
 if(e.target.id == 'divide'){
     storedOperator = '/';
 }else if(e.target.id == 'multiply'){
@@ -51,6 +62,14 @@ if(e.target.id == 'divide'){
 }else{
     storedOperator = e.target.textContent;
 }
+if(num1){
+    displayValue = '';
+}
+}
+
+//function to preform operation
+const prefromOperation = function(){
+    
 }
 
 //fucnton for clearing the display and backspace
