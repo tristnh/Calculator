@@ -77,9 +77,10 @@ const prefromOperation = function(){
     if(num1 && num2 && storedOperator){
         storedNumberDisplay.textContent += ` ${num2} =`;
         num1 = +num1;
-        num2 = +num2;;
+        num2 = +num2;
         answer =  operate(num1, num2, storedOperator);
-        display.textContent = answer;
+        displayValue = answer;
+        display.textContent = displayValue;
     }
 }
 
