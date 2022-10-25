@@ -37,7 +37,8 @@ const buttons = document.querySelector('.buttons-cont');
 const numbuttons = document.querySelectorAll('.numbutton');
 const operator = document.querySelectorAll('.operator');
 const equal = document.querySelector('.equal');
-const clearbuttons = document.querySelectorAll('.big-button');
+const clearAllButton = document.querySelector('#full-clear');
+const backspaceButton = document.querySelector('#backspace')
 const display = document.querySelector('.display');
 const storedNumberDisplay = document.querySelector('.stored-numbers');
 
@@ -66,6 +67,8 @@ const setOperator = function(e){
     num1 = displayValue;
     storedOperator = e.target.id;
     storedNumberDisplay.textContent = `${num1} ${e.target.textContent}`;
+    displayValue = 0;
+    display.textContent = displayValue;
     if(num1){
         displayValue = '';
     }
@@ -85,27 +88,40 @@ const prefromOperation = function(){
 }
 
 //fucnton for clearing the display and backspace
-const clear = function(e){
+const clearAll = function(e){
     if(e.target.id == 'full-clear'){
         displayValue = '';
         num1 = '';
         num2 = '';
         storedOperator = '';
+        answer = '';
         display.textContent = '';
         storedNumberDisplay.textContent = '';
-    } else if(e.target.id == 'backspace'){
-       displayValue = displayValue.substring(0,displayValue.length-1);
-       display.textContent = display.textContent.substring(0, display.textContent.length-1);
     }
 }
+
+const signsRegex1 = /[+\-]$/g;
+const backspace = function(e){
+    if(displayValue){
+        displayValue = displayValue.toString();
+        console.log(displayValue);
+        displayValue = displayValue.replace(/\d/g, '');
+        display.textContent = displayValue;
+    } else if(signsRegex1.test(storedNumberDisplay.textContent)){
+        let tempStoredDisplay = storedNumberDisplay.textContent;
+        tempStoredDisplay = tempStoredDisplay.replace(/[+\-]/g, '');
+        storedNumberDisplay.textContent = tempStoredDisplay;
+        //Need to finish divide and times i couldnlt get them to go in the regex list above
+}
+
 //event listners to populate the display
 numbuttons.forEach((button) => {
     button.addEventListener('click', displayMainNum);
 });
 
-clearbuttons.forEach((button) => {
-    button.addEventListener('click', clear);
-});
+clearAllButton.addEventListener('click', clearAll);;
+
+backspaceButton.addEventListener('click', backspace);
 
 operator.forEach((button) => {
     button.addEventListener('click', setOperator);
