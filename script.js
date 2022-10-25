@@ -67,10 +67,9 @@ const setOperator = function(e){
     num1 = displayValue;
     storedOperator = e.target.id;
     storedNumberDisplay.textContent = `${num1} ${e.target.textContent}`;
-    displayValue = 0;
-    display.textContent = displayValue;
     if(num1){
         displayValue = '';
+        display.textContent = displayValue;
     }
 }
 
@@ -100,7 +99,7 @@ const clearAll = function(e){
     }
 }
 
-const signsRegex1 = /[+\-]$/g;
+const signsRegex1 = /[+\-=]$|(÷)$|(×)$/g;
 const backspace = function(e){
     if(displayValue){
         displayValue = displayValue.toString();
@@ -109,9 +108,9 @@ const backspace = function(e){
         display.textContent = displayValue;
     } else if(signsRegex1.test(storedNumberDisplay.textContent)){
         let tempStoredDisplay = storedNumberDisplay.textContent;
-        tempStoredDisplay = tempStoredDisplay.replace(/[+\-]/g, '');
+        tempStoredDisplay = tempStoredDisplay.replace(/[+\-=]$|(÷)$|(×)$/g, '');
         storedNumberDisplay.textContent = tempStoredDisplay;
-        //Need to finish divide and times i couldnlt get them to go in the regex list above
+    }
 }
 
 //event listners to populate the display
