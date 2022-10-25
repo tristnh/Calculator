@@ -46,6 +46,7 @@ const storedNumberDisplay = document.querySelector('.stored-numbers');
 let displayValue='';
 let num2 = '';
 const displayMainNum = function(e){
+    if(answer){return;}
     if(num1){
         displayValue += e.target.textContent;
         display.textContent = `${displayValue}`;
@@ -64,18 +65,21 @@ const displayMainNum = function(e){
 let num1 = '';
 let storedOperator = ''
 const setOperator = function(e){
+    if(!displayValue){return;}
     num1 = displayValue;
     storedOperator = e.target.id;
     storedNumberDisplay.textContent = `${num1} ${e.target.textContent}`;
     if(num1){
         displayValue = '';
         display.textContent = displayValue;
+        answer = '';
     }
 }
 
 //function to preform operation
 let answer = ''
 const prefromOperation = function(){
+    if(answer){return;}
     if(num1 && num2 && storedOperator){
         storedNumberDisplay.textContent += ` ${num2} =`;
         num1 = +num1;
@@ -102,6 +106,7 @@ const clearAll = function(e){
 const signsRegex1 = /[+\-=]$|(÷)$|(×)$/g;
 const signsRegex2 = /[1-9]$/g;
 const backspace = function(e){
+    answer = '';
     if(displayValue){
         displayValue = displayValue.toString();
         console.log(displayValue);
