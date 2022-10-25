@@ -100,6 +100,7 @@ const clearAll = function(e){
 }
 
 const signsRegex1 = /[+\-=]$|(÷)$|(×)$/g;
+const signsRegex2 = /[1-9]$/g;
 const backspace = function(e){
     if(displayValue){
         displayValue = displayValue.toString();
@@ -108,7 +109,11 @@ const backspace = function(e){
         display.textContent = displayValue;
     } else if(signsRegex1.test(storedNumberDisplay.textContent)){
         let tempStoredDisplay = storedNumberDisplay.textContent;
-        tempStoredDisplay = tempStoredDisplay.replace(/[+\-=]$|(÷)$|(×)$/g, '');
+        tempStoredDisplay = tempStoredDisplay.replace(/[ +\-=]$|(÷)$|(×)$/g, '');
+        storedNumberDisplay.textContent = tempStoredDisplay;
+    }else{
+        let tempStoredDisplay = storedNumberDisplay.textContent;
+        tempStoredDisplay = tempStoredDisplay.replace(/. $/g,'');
         storedNumberDisplay.textContent = tempStoredDisplay;
     }
 }
